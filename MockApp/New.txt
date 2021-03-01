@@ -1,0 +1,3 @@
+Patch(MockApp, Gallery4.Selected, {Hours: Value(DataCardValue30.Text),Overtime:Value(DataCardValue25.Text),Description:Value(DataCardValue11.Text)})
+
+Filter('20180709_case4',Author.Email=CurrentUser)

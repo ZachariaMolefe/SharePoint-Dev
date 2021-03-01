@@ -1,0 +1,12 @@
+name of person you want to visit *
+your name *
+arrival time *
+exit time *
+amount of time you will be visiting
+your picture
+
+
+The person can apprive of decline
+with a message
+
+its like setting up an appointment
