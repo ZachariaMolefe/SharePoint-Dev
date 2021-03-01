@@ -1,0 +1,82 @@
+On start >>>
+
+	Set(vr,User());
+	Refresh(Salary);
+	Refresh(ManagerSI_1);
+	ClearCollect(
+    department,{
+        Depart:""
+    },
+    {
+        Depart:"IT/IS"
+    },
+    {
+        Depart:"Finance"
+    },
+    {
+        Depart:"HR"
+    },
+    {
+        Depart:"Risk"
+    }
+	);
+	ClearCollect(
+    reason,{
+        reason:""
+    },
+    reason,{
+        reason:"Workload"
+    },
+    reason,{
+        reason:"Extended working hours"
+    },
+    reason,{
+        reason:"Promoted"
+    }
+	);
+	ClearCollect(
+    Role,{
+        role:""
+    },
+    Role,{
+        role:"Junior"
+    },
+    Role,{
+        role:"Intermediate"
+    },
+    Role,{
+        role:"Senior"
+    }
+	);
+	Set(dis,"DiplayMode.View");
+	Set(con6,true);
+	Set(con7,true);
+	Set(newpop,false);
+	Set(outpopup,false);
+	Set(Updated,false);
+	Set(popup,false);
+	Set(form,false);
+	Set(gal,false);
+	Set(sav,false);
+	NewForm(Form1);
+	NewForm(Form1_1);
+	ResetForm(Form1)
+<<<<
+
+Application >>>
+	If(Value(txtamount.Text)<0||Value(txtamount.Text)>4000,Reset(txtamount)&&UpdateContext({err:"amount cannot be greater than 4000 or lesser than 0"})&&btnSubmit.DisplayMode.Disabled,UpdateContext({err:""}));
+
+	If(txtamount.Text=""&&Value(txtamount.Text)>4000&&ddreason.SelectedText.Value=""&&dddepart.SelectedText.Value=""&&ddrole.SelectedText.Value=""&&DataCardValue16.Text="R",!SubmitForm(Form1)&&UpdateContext({error:" * Mandatory fields are required"}),SubmitForm(Form1)&&Navigate(FormSubmitted,ScreenTransition.Fade)&&UpdateContext({error:""}))
+<<<
+
+Edit >>>
+	Patch(Salary,Gallery4.Selected,{Description: DataCardValue4.Text ,Amount:DataCardValue8.Text});
+	Set(Updated,true);
+	Refresh(Salary)
+<<<
+
+UserOutcome >>>
+	CountRows(Filter(Salary,CreatedBy=User().FullName))
+
+	Filter(Salary,itemStatus="Approved",User().FullName=CreatedBy)
+<<<
